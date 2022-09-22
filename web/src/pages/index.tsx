@@ -1,4 +1,4 @@
-import { getSession } from "@auth0/nextjs-auth0"
+import { getSession, getAccessToken } from "@auth0/nextjs-auth0"
 import { GetServerSideProps } from "next"
 
 export default function Home() {
@@ -7,6 +7,12 @@ export default function Home() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = getSession(req, res)
+
+  const accessToken = await getAccessToken(req, res,{
+  })
+
+  console.log('🚀 ~ file: index.tsx ~ line 12 ~ constgetServerSideProps:GetServerSideProps= ~ accessToken', accessToken)
+  
 
   if (!session) {
     return {
@@ -22,11 +28,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
         permanent: false,
       }
     }
-  }
-
-
-  return {
-    props: {
-    },
   }
 }
