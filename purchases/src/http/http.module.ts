@@ -1,8 +1,11 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'node:path';
+import { resolve } from 'node:path';
 
 import { DatabaseModule } from '../database/database.module';
 import { MessagingModule } from '../messaging/messaging.module';
@@ -18,9 +21,9 @@ import { PurchasesResolver } from './graphql/resolvers/purchases.resolver';
     ConfigModule.forRoot(),
     DatabaseModule,
     MessagingModule,
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
+      autoSchemaFile: resolve(process.cwd(), 'src/schema.gql'),
     }),
   ],
   providers: [

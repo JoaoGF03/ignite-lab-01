@@ -33,10 +33,10 @@ export class CoursesResolver {
       throw new Error('Student not found');
     }
 
-    const enrollment = await this.enrollmentsService.findByCourseAndStudentId(
-      id,
-      student.id,
-    );
+    const enrollment = await this.enrollmentsService.findByCourseAndStudentId({
+      courseId: id,
+      studentId: student.id,
+    });
 
     if (!enrollment) {
       throw new UnauthorizedException();
