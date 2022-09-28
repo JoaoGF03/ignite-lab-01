@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const accessToken = await getAccessToken(req, res,{
   })
 
-  console.log('🚀 ~ file: index.tsx ~ line 12 ~ constgetServerSideProps:GetServerSideProps= ~ accessToken', accessToken)
+  console.log('🚀 ~ file: index.tsx ~ line 12 ~ accessToken', accessToken)
   
 
   if (!session) {
